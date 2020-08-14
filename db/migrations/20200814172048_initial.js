@@ -1,35 +1,12 @@
 const Knex = require('knex');
 const table_names = require('../../src/constants/table_names');
-
-function addDefaultColumns(table) {
-    table.timestamps(false, true);
-    table.datetime('deleted_at').notNullable();
-}
-
-async function createTableName(knex, tn) {
-    return await knex.schema.createTable(tn, (table) => {
-        table.increments().notNullable();
-        table.string('name').notNullable().unique();
-        addDefaultColumns(table);
-    });
-}
-
-function references(table, tableName) {
-    table
-        .integer(`${tableName}_id`)
-        .unsigned()
-        .references('id')
-        .inTable(tableName)
-        .onDelete('cascade');
-}
-
-function url_column(table, columnName) {
-    table.string(columnName, 2000);
-}
-
-function email(table, columnName) {
-    return table.string(columnName, 254);
-}
+const {
+    addDefaultColumns,
+    createTableName,
+    url_column,
+    email,
+    references
+} = require('../../src/lib/utils');
 
 /**
  * @param {Knex} knex 
@@ -49,7 +26,7 @@ exports.up = async (knex) => {
         createTableName(knex, table_names.item_type),
         createTableName(knex, table_names.state),
         createTableName(knex, table_names.country),
-        knex.schema.createTable(table_names.location, (table) => {
+        knex.schema.createTable(table_names.inventory_location, (table) => {
             table.increments().notNullable();
             table.string('name').notNullable().unique();
             table.string('description', 1000);
@@ -67,12 +44,12 @@ exports.up = async (knex) => {
         table.string('zipCode', 15).notNullable();
         table.float('latitude').notNullable();
         table.float('longitude').notNullable();
-        references(table, table_names.state);
+        references(table, table_names.state, false);
         references(table, table_names.country);
         addDefaultColumns(table);
     });
 
-    await knex.schema.createTable(table_names.manufacturer, (table) => {
+    await knex.schema.createTable(table_names.company, (table) => {
         table.increments().notNullable();
         table.string('name').notNullable();
         url_column(table, 'logo_url');
@@ -95,12 +72,12 @@ exports.up = async (knex) => {
 
 exports.down = async (knex) => {
     await Promise.all([
-        table_names.manufacturer,
+        table_names.company,
         table_names.address,
         table_names.user,
         table_names.item_type,
         table_names.country,
-        table_names.location,
         table_names.state,
-    ].map((tableName) => knex.schema.dropTable(tableName)));
+        table_names.inventory_location,
+    ].map((tableName) => knex.schema.dropTableIfExists(tableName)));
 };

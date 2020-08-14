@@ -9,7 +9,7 @@ module.exports = {
     connection: {
       host: process.env.HOST,
       database: process.env.POSTGRES_DB,
-      user:     process.env.POSTGRES_USER,
+      user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD
     },
     pool: {
@@ -19,6 +19,9 @@ module.exports = {
     migrations: {
       tableName: 'knex_migrations',
       directory: './db/migrations',
+    },
+    seeds: {
+      directory: './db/seeds',
     }
   }
 
