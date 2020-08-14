@@ -1,0 +1,32 @@
+{
+  "name": "home_inventory",
+  "version": "1.0.0",
+  "description": "* [x] User",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TilenOkretic/home_inventory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TilenOkretic/home_inventory/issues"
+  },
+  "homepage": "https://github.com/TilenOkretic/home_inventory#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "knex": "^0.21.4",
+    "pg": "^8.3.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.9.0",
+    "@typescript-eslint/parser": "^3.9.0",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}
