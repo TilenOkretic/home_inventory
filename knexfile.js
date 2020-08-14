@@ -7,6 +7,7 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
+      host: process.env.HOST,
       database: process.env.POSTGRES_DB,
       user:     process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD
@@ -16,7 +17,8 @@ module.exports = {
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: 'knex_migrations',
+      directory: './db/migrations',
     }
   }
 
