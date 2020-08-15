@@ -1,6 +1,8 @@
 const express = require('express');
 const yup = require('yup');
 const bcrypt = require('bcrypt');
+const User = require('../users/users.model');
+const jwt = require('../../lib/jwt');
 
 
 const router = express.Router();
@@ -27,8 +29,9 @@ const schema = yup.object().shape({
         .required()
 })
 
-function validatePassword(password, username) {
-    return password.toLowerCase() != username.toLowerCase();
+const error_messages = {
+    invalid_login: "Invalid login",
+    emailInUse: "Email in use"
 }
 
 router.post('/signup', async (req, res, next) => {
@@ -49,18 +52,34 @@ router.post('/signup', async (req, res, next) => {
             abortEarly: false
         });
 
-        const exisiting_user = User.quary().where({
+        const exisiting_user = await User.query().where({
             email
-        });
+        }).first();
 
         if (exisiting_user) {
-            const err = new Error('Email in use!');
-            res.status(409);
+            const err = new Error(error_messages.emailInUse);
+            res.status(403);
             throw err;
         }
 
+        //TODO: get round from config
+        const hashed_password = await bcrypt.hash(password, 12);
+        const insertedUser = await User.query().insert({
+            name,
+            email,
+            password: hashed_password,
+        });
+
+        delete insertedUser.password;
+        const payload = {
+            id: insertedUser.id,
+            name,
+            email,
+        };
+        const token = await jwt.sign(payload);
         res.json({
-            message: 'OKAY'
+            user: payload,
+            token
         });
     } catch (error) {
         console.log(error)
@@ -68,8 +87,52 @@ router.post('/signup', async (req, res, next) => {
     }
 });
 
-router.post('/signin', (req, res, next) => {
+router.post('/signin', async (req, res, next) => {
+    const {
+        email,
+        password
+    } = req.body;
+    try {
+        await schema.validate({
+            name: "DocD",
+            email,
+            password
+        }, {
+            abortEarly: false
+        });
 
+        const user = await User.query().where({
+            email
+        }).first();
+
+        if (!user) {
+            const err = new Error(error_messages.invalid_login);
+            res.status(403);
+            throw err;
+        }
+
+        const valid_password = await bcrypt.compare(password, user.password);
+
+        if (!valid_password) {
+            const err = new Error(error_messages.invalid_login);
+            res.status(403);
+            throw err;
+        }
+
+        const payload = {
+            id: user.id,
+            name: user.name,
+            email,
+        };
+        const token = await jwt.sign(payload);
+        res.json({
+            user: payload,
+            token
+        });
+    } catch (error) {
+        console.log(error)
+        next(error);
+    }
 });
 
 module.exports = router;
