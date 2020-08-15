@@ -14,7 +14,7 @@
             "$id": "#/properties/id",
             "type": "integer",
             "title": "The ID",
-            "description": "An explanation about the purpose of this instance.",
+            "description": "An explanation about the purpose of this instance."
         },
         "email": {
             "$id": "#/properties/email",
@@ -40,12 +40,12 @@
         "created_at": {
             "$id": "#/properties/created_at",
             "type": "string",
-            "title": "The creation date of user!",
+            "title": "The creation date of user!"
         },
         "updated_at": {
             "$id": "#/properties/updated_at",
             "type": "string",
-            "title": "The date user has been last updated!",
+            "title": "The date user has been last updated!"
         }
     },
     "additionalProperties": false
