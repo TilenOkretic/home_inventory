@@ -9,7 +9,7 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "test": "jest" 
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,13 +23,16 @@
   },
   "homepage": "https://github.com/TilenOkretic/home_inventory#readme",
   "dependencies": {
+    "ajv": "^6.12.4",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.4",
+    "db-errors": "^0.2.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.0.0",
     "knex": "^0.21.4",
     "morgan": "^1.10.0",
+    "objection": "^2.2.2",
     "pg": "^8.3.0"
   },
   "devDependencies": {
