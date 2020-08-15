@@ -4,11 +4,11 @@ function addDefaultColumns(table) {
 }
 
 async function createTableName(knex, tn) {
-    return await knex.schema.createTable(tn, (table) => {
+    return knex.schema.createTable(tn, (table) => {
         table.increments().notNullable();
         table.string('name').notNullable().unique();
         addDefaultColumns(table);
-    });
+      });
 }
 
 function references(table, tableName, notNullable = true, columnName = '') {

@@ -18,7 +18,7 @@ exports.up = async (knex) => {
 
     await knex.schema.table(table_names.state, (table) => {
         table.string('code');
-        references(table, table_names.country);
+        references(table, table_names.country, false);
     });
 
     await knex.schema.table(table_names.country, (table) => {

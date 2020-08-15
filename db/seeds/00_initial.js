@@ -23,8 +23,9 @@ exports.seed = async (knex) => {
 
   const [created_user] = await knex(table_names.user).insert(user).returning('*');
 
-  console.log('User created!', created_user);
-
+  if (process.env.NODE_ENV !== 'test') {
+    console.log('User created!', created_user);
+  }
   await knex(table_names.country).insert(countries);
 
   await knex(table_names.state).insert([{

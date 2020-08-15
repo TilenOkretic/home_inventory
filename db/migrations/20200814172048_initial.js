@@ -24,8 +24,8 @@ exports.up = async (knex) => {
             addDefaultColumns(table);
         }),
         createTableName(knex, table_names.item_type),
-        createTableName(knex, table_names.state),
         createTableName(knex, table_names.country),
+        createTableName(knex, table_names.state),
         knex.schema.createTable(table_names.inventory_location, (table) => {
             table.increments().notNullable();
             table.string('name').notNullable().unique();
