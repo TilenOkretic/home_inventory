@@ -99,7 +99,7 @@ module.exports = {
   // Use this configuration option to add custom reporters to Jest
   // reporters: undefined,
 
-  // Automatically reset mock state between every test
+  // Automatically reset mock regija between every test
   // resetMocks: false,
 
   // Reset the module registry before running each individual test
@@ -108,7 +108,7 @@ module.exports = {
   // A path to a custom resolver
   // resolver: undefined,
 
-  // Automatically restore mock state between every test
+  // Automatically restore mock regija between every test
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within

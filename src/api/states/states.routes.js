@@ -20,9 +20,9 @@ router.get('/:id', async (req, res, next) => {
             res.status(422);
             throw error;
         } else {
-            const states = await queries.get(parseInt(id, 10) || 0);
-            if (states) {
-                res.json(states);
+            const regijas = await queries.get(parseInt(id, 10) || 0);
+            if (regijas) {
+                res.json(regijas);
             }
             return next();
         }

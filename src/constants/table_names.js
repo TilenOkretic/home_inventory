@@ -1,7 +1,7 @@
 module.exports = {
     user: 'user',
     item_type: 'item_type',
-    state: 'state',
+    regija: 'regija',
     country: 'country',
     inventory_location: 'inventory_location',
     address: 'address',

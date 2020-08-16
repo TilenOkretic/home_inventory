@@ -25,7 +25,7 @@ exports.up = async (knex) => {
         }),
         createTableName(knex, table_names.item_type),
         createTableName(knex, table_names.country),
-        createTableName(knex, table_names.state),
+        createTableName(knex, table_names.regija),
         knex.schema.createTable(table_names.inventory_location, (table) => {
             table.increments().notNullable();
             table.string('name').notNullable().unique();
@@ -42,9 +42,9 @@ exports.up = async (knex) => {
         table.string('street_address_2', 100);
         table.string('city', 50).notNullable();
         table.string('zipCode', 15).notNullable();
-        table.float('latitude').notNullable();
-        table.float('longitude').notNullable();
-        references(table, table_names.state, false);
+        table.double('latitude').notNullable();
+        table.double('longitude').notNullable();
+        references(table, table_names.regija, false);
         references(table, table_names.country);
         addDefaultColumns(table);
     });
@@ -64,7 +64,7 @@ exports.up = async (knex) => {
         table.string('zipCode', 15).notNullable();
         table.float('latitude').notNullable();
         table.float('longitude').notNullable();
-        references(table, table_names.state);
+        references(table, table_names.regija);
         references(table, table_names.country);
         addDefaultColumns(table);
     });
@@ -77,7 +77,7 @@ exports.down = async (knex) => {
         table_names.user,
         table_names.item_type,
         table_names.country,
-        table_names.state,
+        table_names.regija,
         table_names.inventory_location,
     ].map((tableName) => knex.schema.dropTableIfExists(tableName)));
 };

@@ -16,11 +16,10 @@ const {
  */
 exports.up = async (knex) => {
 
-    await knex.schema.table(table_names.state, (table) => {
+    await knex.schema.table(table_names.regija, (table) => {
         table.string('code');
-        references(table, table_names.country, false);
+        references(table, table_names.country);
     });
-
     await knex.schema.table(table_names.country, (table) => {
         table.string('code');
     });
@@ -67,7 +66,7 @@ exports.up = async (knex) => {
 };
 
 exports.down = async (knex) => {
-    await knex.schema.table(table_names.state, (table) => {
+    await knex.schema.table(table_names.regija, (table) => {
         table.dropColumn('code');
         table.dropColumn('country_id');
     });

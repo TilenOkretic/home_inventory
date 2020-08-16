@@ -8,11 +8,11 @@ async function createTableName(knex, tn) {
         table.increments().notNullable();
         table.string('name').notNullable().unique();
         addDefaultColumns(table);
-      });
+    });
 }
 
 function references(table, tableName, notNullable = true, columnName = '') {
-    const def = table
+    const definition = table
         .integer(`${columnName || tableName}_id`)
         .unsigned()
         .references('id')
@@ -20,10 +20,9 @@ function references(table, tableName, notNullable = true, columnName = '') {
         .onDelete('cascade');
 
     if (notNullable) {
-        def.notNullable()
+        definition.notNullable();
     }
-
-    return def;
+    return definition;
 }
 
 function url_column(table, columnName) {
