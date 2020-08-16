@@ -41,9 +41,10 @@ exports.up = async (knex) => {
         table.string('street_address_1', 100).notNullable();
         table.string('street_address_2', 100);
         table.string('city', 50).notNullable();
-        table.string('zipCode', 15).notNullable();
+        table.string('zipcode', 15).notNullable();
         table.double('latitude').notNullable();
         table.double('longitude').notNullable();
+        table.unique(['street_address_1', 'city', 'zipcode', 'country_id', 'regija_id']);
         references(table, table_names.regija, false);
         references(table, table_names.country);
         addDefaultColumns(table);

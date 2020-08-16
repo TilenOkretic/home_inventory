@@ -7,7 +7,7 @@
     "required": [
         "street_address_1",
         "city",
-        "zipCode",
+        "zipcode",
         "country_id",
         "latitude",
         "longitude"
@@ -34,8 +34,8 @@
             "type": "string",
             "title": "The city name."
         },
-        "zipCode": {
-            "$id": "#/properties/zipCode",
+        "zipcode": {
+            "$id": "#/properties/zipcode",
             "type": "string",
             "title": "The zipcode"
         },

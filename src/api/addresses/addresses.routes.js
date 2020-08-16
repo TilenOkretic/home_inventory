@@ -18,6 +18,13 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
+
+        ['street_address_1', 'street_address_2', 'city', 'zipcode'].forEach((elm) => {
+            if (req.body[elm]) {
+                req.body[elm] = req.body[elm].toString().toLowerCase().trim();
+            }
+        });
+
         const address = await Address
             .query()
             .insert(req.body)
