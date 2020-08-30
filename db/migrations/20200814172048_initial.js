@@ -58,15 +58,6 @@ exports.up = async (knex) => {
         url_column(table, 'website_url');
         email(table, 'email');
         references(table, table_names.address)
-
-
-        table.string('street_address_2', 100);
-        table.string('city', 50).notNullable();
-        table.string('zipCode', 15).notNullable();
-        table.float('latitude').notNullable();
-        table.float('longitude').notNullable();
-        references(table, table_names.regija);
-        references(table, table_names.country);
         addDefaultColumns(table);
     });
 };
