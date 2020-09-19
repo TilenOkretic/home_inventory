@@ -2,83 +2,69 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",
     "title": "Item Info",
-    "description": "The item info.",
-    "default": {},
+    "description": "The Item Info",
     "required": [
-        "user_id",
-        "item_id",
-        "purchase-date",
-        "inventory_location_id"
+      "user_id",
+      "item_id",
+      "purchase-date",
+      "inventory_location_id"
     ],
+    "additionalProperties": false,
     "properties": {
         "id": {
-            "$id": "#/properties/item_id",
+            "$id": "#/properties/id",
             "type": "integer",
-            "title": "The item ID",
-            "description": "An explanation about the purpose of this instance."
+            "title": "The database ID of the Item."
         },
-        "purchase_date": {
-            "$id": "#/properties/purchase_date",
+        "purchase-date": {
+            "$id": "#/properties/purchase-date",
             "type": "string",
             "format": "date",
-            "title": "The item ID",
-            "description": "Date of purchase"
+            "title": "The date of purchase"
         },
-        "experation_date": {
-            "$id": "#/properties/experation_date",
+        "experation-date": {
+            "$id": "#/properties/experation-date",
             "type": "string",
             "format": "date",
-            "title": "The item ID",
-            "description": "Date of experation"
-        },
-        "item_id": {
-            "$id": "#/properties/item_id",
-            "type": "integer",
-            "title": "The ID",
-            "description": "An explanation about the purpose of this instance."
-        },
-        "retailer_id": {
-            "$id": "#/properties/retailer_id",
-            "type": "integer",
-            "title": "The ID",
-            "description": "ID of the reatailer."
+            "title": "The date of expiration"
         },
         "last_used": {
-            "$id": "#/properties/experation_date",
+            "$id": "#/properties/last_used",
             "type": "string",
             "format": "date",
-            "title": "last use",
-            "description": "Date of last use."
+            "title": "The date of last use."
         },
-        "item_type_id": {
-            "$id": "#/properties/item_type_id",
-            "type": "number",
-            "title": "The id of the item type"
+        "retailer_id": {
+          "$id": "#/properties/retailer_id",
+          "type": "integer",
+          "title": "The id of the retailer."
         },
         "purchase_price": {
-            "$id": "#/properties/purchase_price",
-            "type": "number",
-            "minimum": 0,
-            "title": "The item purchase_price",
-            "description": "Item purchase_price"
+          "$id": "#/properties/purchase_price",
+          "minimum": 0,
+          "type": "number",
+          "title": "The purchase price."
         },
         "msrp": {
-            "$id": "#/properties/msrp",
-            "type": "number",
-            "minimum": 0,
-            "title": "The item msrp",
-            "description": "Item msrp"
+          "$id": "#/properties/msrp",
+          "minimum": 0,
+          "type": "number",
+          "title": "The msrp."
         },
-        "inventory_location_id": {
-            "$id": "#/properties/inventory_location_id",
-            "type": "number",
-            "title": "The inventory location id."
+        "item_id": {
+          "$id": "#/properties/item_id",
+          "type": "integer",
+          "title": "The id of the parent item."
         },
         "user_id": {
             "$id": "#/properties/user_id",
             "type": "number",
             "title": "The id of the user."
+        },
+        "inventory_location_id": {
+            "$id": "#/properties/inventory_location_id",
+            "type": "number",
+            "title": "The id of the inventory location."
         }
-    },
-    "additionalProperties": false
-}
+    }
+  }

@@ -2,7 +2,7 @@ const {
     Model
 } = require('objection');
 
-const table_names = require('../../constants/table_names');
+const table_names = require('../../../constants/table_names');
 const schema = require('./item_infos.schema.json');
 
 class ItemInfos extends Model {

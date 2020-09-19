@@ -35,4 +35,17 @@ exports.seed = async (knex) => {
     await knex(table_names.item_type).insert({
         name: "Brezalkoholne Pijace",
     });
+
+    await knex(table_names.inventory_location).insert([{
+        name: "Shramba pri racunalniku",
+    },
+    {
+        name: "Kuhinja",
+    },
+    {
+        name: "Skrinja stara",
+    },
+    {
+        name: "Skrinja nova",
+    }])
 };
